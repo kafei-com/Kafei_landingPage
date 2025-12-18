@@ -1,0 +1,11 @@
+{
+  "id": "demo-auto-id-001",
+  "result": {
+    "architecture": "This is a demo architecture for testing. The system consists of a frontend, backend API, and a database layer working together.",
+    "diagram": "component\nFrontend -> Backend : Request\nBackend -> Database : Query\nDatabase -> Backend : Response\nBackend -> Frontend : Response",
+    "structure": ["backend/", "backend/controllers/", "frontend/", "frontend/src/"],
+    "deployment": "Build → Deploy → Run",
+    "risks": "No auth, no caching",
+    "tech_stack": ["React", "Node.js", "Express", "MongoDB"]
+  }
+}
