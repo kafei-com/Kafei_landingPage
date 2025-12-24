@@ -1,12 +1,12 @@
+import { useEffect, useState } from "react";
 import { Navbar, Footer } from "@/components/layout";
+import { LoadingScreen } from "@/components/common";
 import { Hero, Bento, Product, CTA } from "@/features/home/components";
 import { PricingDemo } from "@/features/pricing/components";
-import { Component } from "@/components/ui/testimonial";
-import { LoadingScreen } from "@/components/common";
+import { Component as Testimonial } from "@/components/ui/testimonial";
 import FAQWithSpiral from "@/components/ui/faq";
-import { useEffect, useState } from "react";
 
-const Home = () => {
+const HomePage = () => {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
@@ -18,7 +18,7 @@ const Home = () => {
 
   return (
     <div className="relative w-full min-h-screen bg-black text-white overflow-hidden">
-      <header className="fixed top-0 left-0 w-full z-50 h-20 bg-black-700/80 backdrop-blur-md ">
+      <header className="fixed top-0 left-0 w-full z-50 h-20 bg-black-700/80 backdrop-blur-md">
         <Navbar />
       </header>
 
@@ -27,7 +27,7 @@ const Home = () => {
         <Bento />
         <Product />
         <PricingDemo />
-        <Component />
+        <Testimonial />
         <FAQWithSpiral />
         <CTA />
         <Footer />
@@ -36,4 +36,4 @@ const Home = () => {
   );
 };
 
-export default Home;
+export default HomePage;
