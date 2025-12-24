@@ -1,11 +1,11 @@
-import * as React from "react"
-import { cn } from "../../lib/utils"
+import * as React from "react";
+import { cn } from "../../lib/utils";
 
 interface MarqueeProps extends React.HTMLAttributes<HTMLDivElement> {
-  children: React.ReactNode
-  pauseOnHover?: boolean
-  direction?: "left" | "right"
-  speed?: number
+  children: React.ReactNode;
+  pauseOnHover?: boolean;
+  direction?: "left" | "right";
+  speed?: number;
 }
 
 export function Marquee({
@@ -32,5 +32,5 @@ export function Marquee({
         </div>
       </div>
     </div>
-  )
+  );
 }

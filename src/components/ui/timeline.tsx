@@ -43,7 +43,7 @@ export const Timeline = ({ data }: { data: TimelineEntry[] }) => {
   <div
   ref={containerRef}
   className="relative w-full font-sans md:px-10 overflow-hidden 
-             bg-white/10 backdrop-blur-
+              backdrop-blur-
              rounded-2xl shadow-[0_0_1px_rgba(0,0,0,0.1)]">
 
       {/* Header */}
