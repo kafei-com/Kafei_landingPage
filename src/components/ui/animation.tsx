@@ -1,4 +1,3 @@
-import React from "react";
 import OrbitingItem from "./OrbitingItem";
 import Robot from "./Robot";
 
@@ -19,12 +18,54 @@ export default function AnimationContainer() {
 
       <Robot />
 
-      <OrbitingItem image={controller} alt="Controller" size={100} distance={220} duration="15s" delay="0s" />
-      <OrbitingItem image={rubiksCube} alt="Rubik's Cube" size={90} distance={300} duration="20s" delay="-5s" />
-      <OrbitingItem image={coins} alt="Coins" size={80} distance={350} duration="25s" delay="-10s" />
-      <OrbitingItem image={lightning} alt="Lightning" size={60} distance={180} duration="12s" delay="-18s" />
-      <OrbitingItem image={wires} alt="Wires" size={80} distance={380} duration="18s" delay="-3s" />
-      <OrbitingItem image={gem} alt="Gem" size={40} distance={150} duration="10s" delay="-8s" />
+      <OrbitingItem
+        image={controller}
+        alt="Controller"
+        size={100}
+        distance={220}
+        duration="15s"
+        delay="0s"
+      />
+      <OrbitingItem
+        image={rubiksCube}
+        alt="Rubik's Cube"
+        size={90}
+        distance={300}
+        duration="20s"
+        delay="-5s"
+      />
+      <OrbitingItem
+        image={coins}
+        alt="Coins"
+        size={80}
+        distance={350}
+        duration="25s"
+        delay="-10s"
+      />
+      <OrbitingItem
+        image={lightning}
+        alt="Lightning"
+        size={60}
+        distance={180}
+        duration="12s"
+        delay="-18s"
+      />
+      <OrbitingItem
+        image={wires}
+        alt="Wires"
+        size={80}
+        distance={380}
+        duration="18s"
+        delay="-3s"
+      />
+      <OrbitingItem
+        image={gem}
+        alt="Gem"
+        size={40}
+        distance={150}
+        duration="10s"
+        delay="-8s"
+      />
     </div>
   );
 }

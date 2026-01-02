@@ -36,15 +36,14 @@ const Footer: React.FC = () => {
         }
       `}</style>
 
-      {/* Background Watermark (Visual flourish from the image) */}
-      <div className="absolute bottom-[-10%] left-1/2 -translate-x-1/2 select-none pointer-events-none z-0 animate-float">
-        <span className="text-[20vw] font-bold text-gray-100/80 tracking-tighter">
-          Kafei
-        </span>
-      </div>
-
       {/* Main Footer Card */}
       <div className="relative z-10 w-full max-w-[1200px] bg-black shadow-white rounded-[2.5rem] shadow-xl p-8 md:p-12 lg:p-16">
+        {/* Background Watermark */}
+        <div className="absolute top-[200px] left-1/2 -translate-x-1/2 -translate-y-1/2 select-none pointer-events-none z-0 hidden md:block ">
+          <span className="text-[20vw] font-bold text-gray-200/20 tracking-tighter mix-blend-overlay">
+            Kafei
+          </span>
+        </div>
         {/* Top Section */}
         <div className="flex flex-col lg:flex-row justify-between gap-12 lg:gap-24">
           {/* Brand Column */}

@@ -5,23 +5,10 @@ import { AnomalousMatterHero } from "@/components/ui/anomalous";
 import { Marquee } from "@/components/ui/marquee";
 import { ArrowRight, Play } from "lucide-react";
 
-const heroTexts = [
-  {
-    title: "Hyperspeed Running",
-    description:
-      "Experience the real magic of hyperspeed with dynamic motion and energy.",
-  },
-  {
-    title: "Performance",
-    description:
-      "Built for speed, designed for endurance — feel the power of innovation.",
-  },
-  {
-    title: "Limitless Motion",
-    description:
-      "Push your boundaries and reach hyperspeed velocity with style and precision.",
-  },
-];
+const heroTitles = ["Design", "Build", "Deliver", "With confidence"];
+
+const heroSubheading =
+  "Helping Developers turn ideas into production ready systems within minutes - not weeks.";
 
 // marquee logos and texts
 const logos = [
@@ -46,12 +33,10 @@ const Hero = () => {
 
   useEffect(() => {
     const interval = setInterval(() => {
-      setIndex((prev) => (prev + 1) % heroTexts.length);
+      setIndex((prev) => (prev + 1) % heroTitles.length);
     }, 4000);
     return () => clearInterval(interval);
   }, []);
-
-  const { title, description } = heroTexts[index];
 
   return (
     <section className="relative w-full min-h-screen flex flex-col items-center justify-center bg-black overflow-hidden">
@@ -73,21 +58,20 @@ const Hero = () => {
           </motion.div>
 
           <AnimatePresence mode="wait">
-            <motion.div
+            <motion.h1
               key={index}
-              initial={{ opacity: 0, x: 80 }}
-              animate={{ opacity: 1, x: 0 }}
-              exit={{ opacity: 0, x: -80 }}
-              transition={{ duration: 0.6, ease: "easeInOut" }}
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -20 }}
+              transition={{ duration: 0.5, ease: "easeInOut" }}
+              className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-extrabold text-white leading-tight drop-shadow-[0_0_15px_rgba(0,255,100,0.3)] mb-4"
             >
-              <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-extrabold text-white leading-tight drop-shadow-[0_0_15px_rgba(0,255,100,0.3)] mb-4 whitespace-nowrap overflow-hidden text-ellipsis">
-                {title}
-              </h1>
-              <p className="text-base sm:text-lg md:text-xl text-white/70 mt-4 leading-relaxed max-w-[600px] mb-8">
-                {description}
-              </p>
-            </motion.div>
+              {heroTitles[index]}
+            </motion.h1>
           </AnimatePresence>
+          <p className="text-base sm:text-lg md:text-xl text-white/70 mt-4 leading-relaxed max-w-[600px] mb-8">
+            {heroSubheading}
+          </p>
 
           {/* CTA Buttons */}
           <motion.div

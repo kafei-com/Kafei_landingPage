@@ -1,12 +1,14 @@
-import React, { useRef, useEffect, Suspense } from "react";
+import { useRef, useEffect, Suspense } from "react";
 import * as THREE from "three";
 
 export function GenerativeArtScene() {
-  const mountRef = useRef(null);
-  const lightRef = useRef(null);
+  const mountRef = useRef<HTMLDivElement>(null);
+  const lightRef = useRef<THREE.PointLight>(null);
 
   useEffect(() => {
     const currentMount = mountRef.current;
+    if (!currentMount) return;
+
     const scene = new THREE.Scene();
     const camera = new THREE.PerspectiveCamera(
       75,
@@ -86,7 +88,7 @@ export function GenerativeArtScene() {
                     float displacement = snoise(position * 2.0 + time * 0.5) * 0.2;
                     vec3 newPosition = position + normal * displacement;
                     gl_Position = projectionMatrix * modelViewMatrix * vec4(newPosition, 1.0);
-                }`,    // (same GLSL code as before)
+                }`, // (same GLSL code as before)
       fragmentShader: `                uniform vec3 color;
                 uniform vec3 pointLightPosition;
                 varying vec3 vNormal;
@@ -104,7 +106,7 @@ export function GenerativeArtScene() {
                     vec3 finalColor = color * diffuse + color * fresnel * 0.5;
                     
                     gl_FragColor = vec4(finalColor, 1.0);
-                }`,  // (same GLSL code as before)
+                }`, // (same GLSL code as before)
       wireframe: true,
     });
     const mesh = new THREE.Mesh(geometry, material);
@@ -115,8 +117,8 @@ export function GenerativeArtScene() {
     lightRef.current = pointLight;
     scene.add(pointLight);
 
-    let frameId;
-    const animate = (t) => {
+    let frameId: number;
+    const animate = (t: number) => {
       material.uniforms.time.value = t * 0.0003;
       mesh.rotation.y += 0.0005;
       mesh.rotation.x += 0.0002;
@@ -126,19 +128,22 @@ export function GenerativeArtScene() {
     animate(0);
 
     const handleResize = () => {
+      if (!currentMount) return;
       camera.aspect = currentMount.clientWidth / currentMount.clientHeight;
       camera.updateProjectionMatrix();
       renderer.setSize(currentMount.clientWidth, currentMount.clientHeight);
     };
 
-    const handleMouseMove = (e) => {
+    const handleMouseMove = (e: MouseEvent) => {
       const x = (e.clientX / window.innerWidth) * 2 - 1;
       const y = -(e.clientY / window.innerHeight) * 2 + 1;
       const vec = new THREE.Vector3(x, y, 0.5).unproject(camera);
       const dir = vec.sub(camera.position).normalize();
       const dist = -camera.position.z / dir.z;
       const pos = camera.position.clone().add(dir.multiplyScalar(dist));
-      lightRef.current.position.copy(pos);
+      if (lightRef.current) {
+        lightRef.current.position.copy(pos);
+      }
       material.uniforms.pointLightPos.value = pos;
     };
 
@@ -149,29 +154,29 @@ export function GenerativeArtScene() {
       cancelAnimationFrame(frameId);
       window.removeEventListener("resize", handleResize);
       window.removeEventListener("mousemove", handleMouseMove);
-      currentMount.removeChild(renderer.domElement);
+      if (currentMount && renderer.domElement) {
+        currentMount.removeChild(renderer.domElement);
+      }
     };
   }, []);
 
   return <div ref={mountRef} className="absolute inset-0 w-full h-full z-0" />;
 }
 
-export function AnomalousMatterHero({
-  title = "Observation Log: Anomaly 7",
-  subtitle = "Matter in a state of constant, beautiful flux.",
-  description = "A new form of digital existence has been observed. It responds to stimuli, changes form, and exudes an unknown energy. Further study is required.",
-}) {
+export function AnomalousMatterHero() {
   return (
     <section
       role="banner"
       className="relative w-full h-screen bg-[hsl(var(--background))] text-[hsl(var(--foreground))] overflow-hidden"
     >
-      <Suspense fallback={<div className="w-full h-full bg-[hsl(var(--background))]" />}>
+      <Suspense
+        fallback={<div className="w-full h-full bg-[hsl(var(--background))]" />}
+      >
         <GenerativeArtScene />
       </Suspense>
 
       <div className="absolute inset-0 bg-gradient-to-t from-[hsl(var(--background))] via-[hsl(var(--background))/70] to-transparent z-10" />
-{/* 
+      {/* 
       <div className="relative z-20 flex flex-col items-center justify-end h-full pb-20 md:pb-32 text-center">
         <div className="max-w-3xl px-4 animate-fade-in-long">
           <h1 className="text-sm font-mono tracking-widest text-[hsl(var(--sky-300)/80)] uppercase">

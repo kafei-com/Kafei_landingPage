@@ -21,6 +21,11 @@ export default defineConfig({
         target: 'http://localhost:8006',
         changeOrigin: true,
         rewrite: (path) => path
+      },
+      '/generate': {
+        target: 'http://localhost:8006',
+        changeOrigin: true,
+        rewrite: (path) => path
       }
     }
   }
