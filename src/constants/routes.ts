@@ -4,6 +4,7 @@ export const ROUTES = {
   PRICING: '/pricing',
   WISHLIST: '/wishlist',
   KAFEI_AI: '/kafei-ai',
+  NOT_FOUND: '*',
 } as const;
 
 export type RouteKey = keyof typeof ROUTES;
