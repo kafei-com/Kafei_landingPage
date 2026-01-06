@@ -51,7 +51,7 @@ const Hero = () => {
             transition={{ duration: 0.6 }}
             className="mb-6 inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/10 border border-white/20 backdrop-blur-sm"
           >
-            <span className="w-2 h-2 rounded-full bg-green-400 animate-pulse" />
+            <span className="w-2 h-2 rounded-full bg-gray-400 animate-pulse" />
             <span className="text-sm font-medium text-white/80">
               New Release Available
             </span>
@@ -95,7 +95,7 @@ const Hero = () => {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.3 }}
-            className="grid grid-cols-3 gap-6 md:gap-8 w-full max-w-[400px]"
+            className="grid grid-cols-3 gap-4 sm:gap-6 md:gap-8 w-full max-w-[400px] mb-20 sm:mb-0"
           >
             {stats.map((stat, i) => (
               <div
@@ -112,12 +112,12 @@ const Hero = () => {
         </div>
 
         {/* ANIMATION SIDE */}
-        <div className="relative w-full md:w-1/2 flex items-center justify-center">
+        <div className="absolute md:relative inset-0 md:inset-auto w-full md:w-1/2 flex items-center justify-center opacity-30 md:opacity-100 pointer-events-none md:pointer-events-auto">
           <motion.div
             initial={{ opacity: 0, scale: 1.1 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.8, ease: "easeInOut" }}
-            className="w-full h-[50vh] sm:h-[60vh] md:h-screen flex items-center justify-center"
+            className="w-full h-[60vh] md:h-screen flex items-center justify-center"
           >
             <AnomalousMatterHero />
           </motion.div>
@@ -133,7 +133,7 @@ const Hero = () => {
           {logos.map((logo, i) => (
             <div
               key={i}
-              className="flex items-center justify-center mx-10 opacity-80 hover:opacity-100 transition"
+              className="flex items-center justify-center mx-6 sm:mx-10 opacity-80 hover:opacity-100 transition"
             >
               <img
                 src={logo.src}

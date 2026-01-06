@@ -2,6 +2,54 @@
 @tailwind components;
 @tailwind utilities;
 
+/* Global Typography - Using Funnel Display & Funnel Sans */
+* {
+  font-family: "Funnel Sans", sans-serif;
+}
+
+h1,
+h2 {
+  font-family: "Funnel Display", sans-serif;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+}
+
+h3,
+h4,
+h5,
+h6 {
+  font-family: "Funnel Display", sans-serif;
+  font-weight: 600;
+  letter-spacing: 0.01em;
+}
+
+p,
+span,
+a,
+button,
+input,
+textarea,
+label {
+  font-family: "Funnel Sans", sans-serif;
+  font-weight: 400;
+}
+
+/* Dashboard Font Override - use Faustina */
+.dashboard-fonts,
+.dashboard-fonts * {
+  font-family: "Faustina", serif !important;
+}
+
+.dashboard-fonts h1,
+.dashboard-fonts h2,
+.dashboard-fonts h3,
+.dashboard-fonts h4,
+.dashboard-fonts h5,
+.dashboard-fonts h6 {
+  font-family: "Faustina", serif !important;
+  font-weight: 600 !important;
+  letter-spacing: normal !important;
+}
 
 /* Auth Layout */
 .auth-container {
@@ -87,7 +135,6 @@
   text-decoration: none;
   font-weight: 600;
 }
-
 
 /* Hide scrollbar for Chrome, Safari, Edge */
 .hide-scrollbar::-webkit-scrollbar {

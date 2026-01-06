@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import type { ReactNode } from "react";
 import DashboardNavbar from "./nav";
 import Slidebar from "./slidebar";
+import { DarkModeProvider } from "./DarkModeContext";
 
 interface DashboardLayoutProps {
   children: ReactNode;
@@ -20,15 +21,19 @@ const DashboardLayout = ({ children }: DashboardLayoutProps) => {
   }, []);
 
   return (
-    <div className="flex h-screen w-screen overflow-hidden">
-      <Slidebar open={open} setOpen={setOpen} />
+    <DarkModeProvider>
+      <div className="dashboard-fonts flex h-screen w-screen overflow-hidden">
+        <Slidebar open={open} setOpen={setOpen} />
 
-      <div className="flex flex-col flex-1 h-full bg-black">
-        <DashboardNavbar open={open} setOpen={setOpen} />
+        <div className="flex flex-col flex-1 h-full bg-black">
+          <DashboardNavbar open={open} setOpen={setOpen} />
 
-        <main className="flex-1 overflow-hidden p-0 bg-white">{children}</main>
+          <main className="flex-1 overflow-hidden p-0 bg-white">
+            {children}
+          </main>
+        </div>
       </div>
-    </div>
+    </DarkModeProvider>
   );
 };
 

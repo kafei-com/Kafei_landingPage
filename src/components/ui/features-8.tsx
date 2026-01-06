@@ -15,7 +15,7 @@ const features = [
     {
         icon: Shredder,
         title: "System design",
-        description: "Professional, high-level system design tailored to your project",
+        description: "Professional, high-level system design tailored to your project ready to use",
 
     },
     {

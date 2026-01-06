@@ -4,22 +4,22 @@ import { Instagram, Linkedin, Github } from "lucide-react";
 // Link Data Configuration
 const footerLinks = {
   product: [
-    { label: "Features", href: "#" },
-    { label: "Pricing", href: "#" },
-    { label: "Integrations", href: "#" },
-    { label: "Changelog", href: "#" },
+    { label: "Features", href: "/features" },
+    { label: "Pricing", href: "/pricing" },
+    { label: "Integrations", href: "/not-found" },
+    { label: "Changelog", href: "/not-found" },
   ],
   resources: [
-    { label: "Documentation", href: "#" },
-    { label: "Tutorials", href: "#" },
-    { label: "Blog", href: "#" },
-    { label: "Support", href: "#" },
+    { label: "Documentation", href: "/not-found" },
+    { label: "Tutorials", href: "/not-found" },
+    { label: "Blog", href: "/not-found" },
+    { label: "Support", href: "/not-found" },
   ],
   company: [
-    { label: "About", href: "#" },
-    { label: "Careers", href: "#" },
-    { label: "Contact", href: "#" },
-    { label: "Partners", href: "#" },
+    { label: "About", href: "/about" },
+    { label: "Careers", href: "/not-found" },
+    { label: "Contact", href: "/not-found" },
+    { label: "Partners", href: "/not-found" },
   ],
 };
 
@@ -67,7 +67,7 @@ const Footer: React.FC = () => {
             <div className="flex items-center gap-5 text-gray-400">
               {/* X / Twitter Icon */}
               <a
-                href="#"
+                href="/not-found"
                 className="hover:text-white hover:scale-125 transition-all duration-300 ease-out hover:drop-shadow-[0_0_8px_rgba(255,255,255,0.5)]"
               >
                 <svg
@@ -81,13 +81,13 @@ const Footer: React.FC = () => {
                 </svg>
               </a>
               <a
-                href="#"
+                href="/not-found"
                 className="hover:text-white hover:scale-125 transition-all duration-300 ease-out hover:drop-shadow-[0_0_8px_rgba(255,255,255,0.5)]"
               >
                 <Instagram size={20} strokeWidth={2.2} />
               </a>
               <a
-                href="#"
+                href="/not-found"
                 className="hover:text-white hover:scale-125 transition-all duration-300 ease-out hover:drop-shadow-[0_0_8px_rgba(255,255,255,0.5)]"
               >
                 <Linkedin
@@ -98,7 +98,7 @@ const Footer: React.FC = () => {
                 />
               </a>
               <a
-                href="#"
+                href="/not-found"
                 className="hover:text-white hover:scale-125 transition-all duration-300 ease-out hover:drop-shadow-[0_0_8px_rgba(255,255,255,0.5)]"
               >
                 <Github size={20} strokeWidth={2.2} />
@@ -166,23 +166,23 @@ const Footer: React.FC = () => {
 
         {/* Bottom Section */}
         <div className="flex flex-col-reverse md:flex-row justify-between items-center gap-6 text-sm text-gray-500">
-          <p>© 2025 Kafei. All rights reserved.</p>
+          <p>© 2026 Kafei. All rights reserved.</p>
 
           <div className="flex items-center gap-8">
             <a
-              href="#"
+              href="/not-found"
               className="hover:text-white hover:underline underline-offset-4 transition-all"
             >
               Privacy Policy
             </a>
             <a
-              href="#"
+              href="/not-found"
               className="hover:text-white hover:underline underline-offset-4 transition-all"
             >
               Terms of Service
             </a>
             <a
-              href="#"
+              href="/not-found"
               className="hover:text-white hover:underline underline-offset-4 transition-all"
             >
               Cookies Settings
