@@ -40,20 +40,20 @@ export const Timeline = ({ data }: { data: TimelineEntry[] }) => {
   });
 
   return (
-  <div
-  ref={containerRef}
-  className="relative w-full font-sans md:px-10 overflow-hidden 
+    <div
+      ref={containerRef}
+      className="relative w-full font-sans md:px-10 overflow-hidden 
               backdrop-blur-
-             rounded-2xl shadow-[0_0_1px_rgba(0,0,0,0.1)]">
-
+             rounded-2xl shadow-[0_0_1px_rgba(0,0,0,0.1)]"
+    >
       {/* Header */}
       <div className="max-w-7xl mx-auto py-20 px-4 md:px-8 lg:px-10">
         <h2 className="text-lg md:text-4xl mb-4 text-white dark:text-white max-w-4xl">
-          Changelog from my journey
+          Kafei is built to solve real problems.
         </h2>
         <p className="text-white dark:text-neutral-300 text-sm md:text-base max-w-sm">
-          I&apos;ve been working on Aceternity for the past 2 years. Here&apos;s
-          a timeline of my journey.
+          We're actively expanding the features that matter in real-world
+          projects. Features that developers need.
         </p>
       </div>
 
@@ -82,8 +82,7 @@ export const Timeline = ({ data }: { data: TimelineEntry[] }) => {
                 {/* Small Circle */}
                 <motion.div
                   animate={{
-                    backgroundColor:
-                      index <= activeIndex ? "#fff" : "#171717",
+                    backgroundColor: index <= activeIndex ? "#fff" : "#171717",
                     boxShadow:
                       index === activeIndex
                         ? "0 0 12px 2px rgba(96,165,250,0.6)"

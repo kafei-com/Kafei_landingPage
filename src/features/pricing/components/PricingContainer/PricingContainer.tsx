@@ -1,173 +1,200 @@
-import { motion } from 'framer-motion';
+import { motion } from "framer-motion";
+import { CheckIcon } from "lucide-react";
+
+interface PricingTier {
+  name: string;
+  price: string;
+  period?: string;
+  tagline: string;
+  features: string[];
+  cta: string;
+  badge?: string;
+  highlighted?: boolean;
+}
+
+const pricingTiers: PricingTier[] = [
+  {
+    name: "Free",
+    price: "Free",
+    tagline: "Perfect for exploration & learning",
+    features: [
+      "1 Project",
+      "View-only (Non editable)",
+      "Limited Stacks",
+      "No ZIP export",
+    ],
+    cta: "Get Started",
+  },
+  {
+    name: "Starter",
+    price: "$10",
+    period: "/month",
+    tagline: "Ideal for students and Solo Devs",
+    features: [
+      "Up to 3 projects",
+      "Editable system design",
+      "Component Tree & ER diagram",
+      "Zip export",
+      "Deployment Guide",
+      "Basic Stack support",
+    ],
+    cta: "Get Started",
+    badge: "Best Option",
+  },
+  {
+    name: "Pro",
+    price: "$20",
+    period: "/month",
+    tagline: "Best for Freelancers & agencies",
+    features: [
+      "10 projects",
+      "Everything in Starter",
+      "Versioned project updates",
+      "Priority stack additions",
+      "Advanced deployment guidance",
+    ],
+    cta: "Get Started",
+    badge: "Most Popular",
+    highlighted: true,
+  },
+  {
+    name: "Advanced",
+    price: "$50",
+    period: "/month",
+    tagline: "Designed for teams & serious builds",
+    features: [
+      "Up to 30 projects",
+      "Collaboration mode (coming soon)",
+      "Early access to new features",
+      "Marketplace access",
+      "Advanced testing tools (coming soon)",
+    ],
+    cta: "Get Started",
+  },
+];
 
 export const Component = () => {
-    return (
-        <section className="bg-background px-40 py-20 transition-colors">
-            <div className="mx-auto flex w-fit flex-wrap justify-center gap-4">
-                <PricingCard
-                    label="Individual"
-                    monthlyPrice="10$"
-                    description="For individuals who want to understand why their landing pages aren't working"
-                    cta="Sign up"
-                    background="bg-indigo-500 dark:bg-indigo-600"
-                    BGComponent={BGComponent1}
-                />
-                <PricingCard
-                    label="Company"
-                    monthlyPrice="20$"
-                    description="For mid-sized companies who are serious about boosting their revenue by 30%"
-                    cta="Sign up"
-                    background="bg-purple-500 dark:bg-purple-600"
-                    BGComponent={BGComponent2}
-                />
-                <PricingCard
-                    label="Enterprise"
-                    monthlyPrice="50$"
-                    description="For large enterprises looking to outsource their conversion rate optimization"
-                    cta="sign up"
-                    background="bg-pink-500 dark:bg-pink-600"
-                    BGComponent={BGComponent3}
-                />
-            </div>
-        </section>
-    );
+  return (
+    <section className="bg-background px-4 md:px-10 lg:px-20 py-20 transition-colors">
+      <div className="mx-auto max-w-7xl">
+        <div className="text-center mb-16">
+          <h2 className="text-4xl md:text-5xl font-bold text-foreground mb-4">
+            Simple, transparent pricing
+          </h2>
+          <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
+            Choose the plan that fits your needs. Upgrade or downgrade anytime.
+          </p>
+        </div>
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+          {pricingTiers.map((tier) => (
+            <PricingCard key={tier.name} tier={tier} />
+          ))}
+        </div>
+      </div>
+    </section>
+  );
 };
 
-const PricingCard = ({ label, monthlyPrice, description, cta, background, BGComponent }) => {
-    return (
-        <motion.div
-            whileHover="hover"
-            transition={{ duration: 1, ease: "backInOut" }}
-            variants={{ hover: { scale: 1.05 } }}
-            className={`relative h-96 w-80 shrink-0 overflow-hidden rounded-xl p-8 
-  bg-black shadow-lg 
-  hover:shadow-[10px_20px_20px_5px_rgba(255,255,255,0.6)] 
-  transition-shadow`}
+interface PricingCardProps {
+  tier: PricingTier;
+}
 
+const PricingCard = ({ tier }: PricingCardProps) => {
+  const isHighlighted = tier.highlighted;
+  const hasBadge = tier.badge;
+
+  return (
+    <motion.div
+      whileHover="hover"
+      transition={{ duration: 0.3, ease: "easeOut" }}
+      variants={{ hover: { scale: 1.02, y: -8 } }}
+      className={`relative flex flex-col rounded-2xl p-6 transition-all duration-300 ${
+        isHighlighted
+          ? "bg-gradient-to-br from-indigo-600 via-purple-600 to-pink-500 text-white shadow-2xl shadow-purple-500/30 ring-2 ring-purple-400/50"
+          : "bg-card text-card-foreground border border-border hover:border-primary/50 hover:shadow-xl hover:shadow-primary/10"
+      }`}
+    >
+      {/* Badge */}
+      {hasBadge && (
+        <div
+          className={`absolute -top-3 left-1/2 -translate-x-1/2 px-4 py-1 rounded-full text-xs font-bold uppercase tracking-wide ${
+            tier.badge === "Most Popular"
+              ? "bg-amber-400 text-amber-900"
+              : "bg-emerald-400 text-emerald-900"
+          }`}
         >
-            <div className="relative z-10 text-white">
-                <span className="mb-3 block w-fit rounded-full bg-white/20 backdrop-blur-sm px-3 py-0.5 text-sm font-medium text-white border border-white/20">
-                    {label}
-                </span>
-                <motion.span
-                    initial={{ scale: 0.85 }}
-                    variants={{ hover: { scale: 1 } }}
-                    transition={{ duration: 1, ease: "backInOut" }}
-                    className="my-2 block origin-top-left font-mono text-6xl font-black leading-[1.2]"
-                >
-                    ${monthlyPrice}/<br />Month
-                </motion.span>
-                <p className="text-lg text-white/90">{description}</p>
-            </div>
-            <button className="absolute bottom-4 left-4 right-4 z-20 rounded-lg border-2 border-white bg-white py-2 text-center font-mono font-black uppercase text-neutral-800 backdrop-blur-sm transition-all duration-200 hover:bg-white/10 hover:text-white hover:border-white/80 focus:outline-none focus:ring-2 focus:ring-white/50 focus:ring-offset-2 focus:ring-offset-transparent">
-                {cta}
-            </button>
-            <BGComponent />
-        </motion.div>
-    );
+          {tier.badge}
+        </div>
+      )}
+
+      {/* Header */}
+      <div className={`mb-6 ${hasBadge ? "mt-2" : ""}`}>
+        <h3
+          className={`text-xl font-bold mb-2 ${
+            isHighlighted ? "text-white" : "text-foreground"
+          }`}
+        >
+          {tier.name}
+        </h3>
+        <div className="flex items-baseline gap-1">
+          <span
+            className={`text-4xl font-black ${
+              isHighlighted ? "text-white" : "text-foreground"
+            }`}
+          >
+            {tier.price}
+          </span>
+          {tier.period && (
+            <span
+              className={`text-sm ${
+                isHighlighted ? "text-white/70" : "text-muted-foreground"
+              }`}
+            >
+              {tier.period}
+            </span>
+          )}
+        </div>
+        <p
+          className={`mt-2 text-sm ${
+            isHighlighted ? "text-white/80" : "text-muted-foreground"
+          }`}
+        >
+          {tier.tagline}
+        </p>
+      </div>
+
+      {/* Features */}
+      <ul className="flex-1 space-y-3 mb-6">
+        {tier.features.map((feature, index) => (
+          <li key={index} className="flex items-start gap-3">
+            <CheckIcon
+              className={`w-5 h-5 shrink-0 mt-0.5 ${
+                isHighlighted ? "text-white" : "text-emerald-500"
+              }`}
+            />
+            <span
+              className={`text-sm ${
+                isHighlighted ? "text-white/90" : "text-foreground"
+              }`}
+            >
+              {feature}
+            </span>
+          </li>
+        ))}
+      </ul>
+
+      {/* CTA Button */}
+      <button
+        className={`w-full py-3 px-4 rounded-xl font-semibold text-sm transition-all duration-200 ${
+          isHighlighted
+            ? "bg-white text-purple-700 hover:bg-white/90 shadow-lg"
+            : "bg-primary text-primary-foreground hover:bg-primary/90"
+        }`}
+      >
+        {tier.cta}
+      </button>
+    </motion.div>
+  );
 };
 
-const BGComponent1 = () => (
-    <motion.svg
-        width="320"
-        height="384"
-        viewBox="0 0 320 384"
-        fill="none"
-        xmlns="http://www.w3.org/2000/svg"
-        variants={{ hover: { scale: 1.5 } }}
-        transition={{ duration: 1, ease: "backInOut" }}
-        className="absolute inset-0 z-0"
-    >
-        <motion.circle
-            variants={{ hover: { scaleY: 0.5, y: -25 } }}
-            transition={{ duration: 1, ease: "backInOut", delay: 0.2 }}
-            cx="160.5"
-            cy="114.5"
-            r="101.5"
-            fill="rgba(0, 0, 0, 0.2)"
-            className="dark:fill-white/10"
-        />
-        <motion.ellipse
-            variants={{ hover: { scaleY: 2.25, y: -25 } }}
-            transition={{ duration: 1, ease: "backInOut", delay: 0.2 }}
-            cx="160.5"
-            cy="265.5"
-            rx="101.5"
-            ry="43.5"
-            fill="rgba(0, 0, 0, 0.2)"
-            className="dark:fill-white/10"
-        />
-    </motion.svg>
-);
-
-const BGComponent2 = () => (
-    <motion.svg
-        width="320"
-        height="384"
-        viewBox="0 0 320 384"
-        fill="none"
-        xmlns="http://www.w3.org/2000/svg"
-        variants={{ hover: { scale: 1.05 } }}
-        transition={{ duration: 1, ease: "backInOut" }}
-        className="absolute inset-0 z-0"
-    >
-        <motion.rect
-            x="14"
-            width="153"
-            height="153"
-            rx="15"
-            fill="rgba(0, 0, 0, 0.2)"
-            className="dark:fill-white/10"
-            variants={{ hover: { y: 219, rotate: "90deg", scaleX: 2 } }}
-            style={{ y: 12 }}
-            transition={{ delay: 0.2, duration: 1, ease: "backInOut" }}
-        />
-        <motion.rect
-            x="155"
-            width="153"
-            height="153"
-            rx="15"
-            fill="rgba(0, 0, 0, 0.2)"
-            className="dark:fill-white/10"
-            variants={{ hover: { y: 12, rotate: "90deg", scaleX: 2 } }}
-            style={{ y: 219 }}
-            transition={{ delay: 0.2, duration: 1, ease: "backInOut" }}
-        />
-    </motion.svg>
-);
-
-const BGComponent3 = () => (
-    <motion.svg
-        width="320"
-        height="384"
-        viewBox="0 0 320 384"
-        fill="none"
-        xmlns="http://www.w3.org/2000/svg"
-        variants={{ hover: { scale: 1.25 } }}
-        transition={{ duration: 1, ease: "backInOut" }}
-        className="absolute inset-0 z-0"
-    >
-        <motion.path
-            variants={{ hover: { y: -50 } }}
-            transition={{ delay: 0.3, duration: 1, ease: "backInOut" }}
-            d="M148.893 157.531C154.751 151.673 164.249 151.673 170.107 157.531L267.393 254.818C273.251 260.676 273.251 270.173 267.393 276.031L218.75 324.674C186.027 357.397 132.973 357.397 100.25 324.674L51.6068 276.031C45.7489 270.173 45.7489 260.676 51.6068 254.818L148.893 157.531Z"
-            fill="rgba(0, 0, 0, 0.2)"
-            className="dark:fill-white/10"
-        />
-        <motion.path
-            variants={{ hover: { y: -50 } }}
-            transition={{ delay: 0.2, duration: 1, ease: "backInOut" }}
-            d="M148.893 99.069C154.751 93.2111 164.249 93.2111 170.107 99.069L267.393 196.356C273.251 202.213 273.251 211.711 267.393 217.569L218.75 266.212C186.027 298.935 132.973 298.935 100.25 266.212L51.6068 217.569C45.7489 211.711 45.7489 202.213 51.6068 196.356L148.893 99.069Z"
-            fill="rgba(0, 0, 0, 0.2)"
-            className="dark:fill-white/10"
-        />
-        <motion.path
-            variants={{ hover: { y: -50 } }}
-            transition={{ delay: 0.1, duration: 1, ease: "backInOut" }}
-            d="M148.893 40.6066C154.751 34.7487 164.249 34.7487 170.107 40.6066L267.393 137.893C273.251 143.751 273.251 153.249 267.393 159.106L218.75 207.75C186.027 240.473 132.973 240.473 100.25 207.75L51.6068 159.106C45.7489 153.249 45.7489 143.751 51.6068 137.893L148.893 40.6066Z"
-            fill="rgba(0, 0, 0, 0.2)"
-            className="dark:fill-white/10"
-        />
-    </motion.svg>
-);
 export const PricingContainer = Component;

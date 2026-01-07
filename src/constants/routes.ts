@@ -1,9 +1,15 @@
 // Route constants for the application
 export const ROUTES = {
   HOME: '/',
+  PRODUCT: '/product',
+  FEATURES: '/features',
   PRICING: '/pricing',
-  WISHLIST: '/wishlist',
-  KAFEI_AI: '/kafei-ai',
+  ABOUT: '/about',
+  KAFEI_AI: '/KafeiAi',
+  LOGIN: '/login',
+  SIGNUP: '/signup',
+  DASHBOARD: '/dashboard',
+  NOT_FOUND: '*',
 } as const;
 
 export type RouteKey = keyof typeof ROUTES;

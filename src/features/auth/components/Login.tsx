@@ -1,6 +1,9 @@
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { useAuth } from "@/app/providers/AuthProvider";
+import { FloatingPaths } from "@/components/ui/BackgroundPaths";
+// import { motion } from "framer-motion";
+import { InteractiveCharacterPolished } from "@/components/ui/InteractiveCharacter";
 
 // --- 1. greeting messages (unchanged) ---
 const GREETING_MESSAGES = [
@@ -15,72 +18,29 @@ const GREETING_MESSAGES = [
 ];
 
 const GoogleIcon = () => (
-  <svg width="24" height="24" viewBox="0 0 48 48">
-    <g>
-      <path
-        fill="#4285F4"
-        d="M44.5 20H24v8.5h11.7C34.7 33.1 29.8 36 24 36c-6.6 0-12-5.4-12-12s5.4-12 12-12c2.7 0 5.2.9 7.2 2.4l6.4-6.4C33.5 5.1 28.9 3 24 3 12.9 3 4 11.9 4 23s8.9 20 20 20c11 0 19.7-8 19.7-20 0-1.3-.1-2.7-.2-4z"
-      />
-      <path
-        fill="#34A853"
-        d="M6.3 14.7l7 5.1C15.1 17.1 19.2 14 24 14c2.7 0 5.2.9 7.2 2.4l6.4-6.4C33.5 5.1 28.9 3 24 3 15.6 3 8.2 8.5 6.3 14.7z"
-      />
-      <path
-        fill="#FBBC05"
-        d="M24 44c5.8 0 10.7-1.9 14.3-5.1l-6.6-5.4C29.7 35.1 27 36 24 36c-5.7 0-10.6-3.7-12.3-8.9l-7 5.4C8.2 39.5 15.6 44 24 44z"
-      />
-      <path
-        fill="#EA4335"
-        d="M44.5 20H24v8.5h11.7c-1.1 3.1-4.1 5.5-7.7 5.5-2.2 0-4.2-.7-5.7-2l-7 5.4C15.1 40.9 19.2 44 24 44c6.6 0 12-5.4 12-12 0-.8-.1-1.5-.2-2.2z"
-      />
-    </g>
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    width="16"
+    height="16"
+    fill="currentColor"
+    className="bi bi-google"
+    viewBox="0 0 16 16"
+  >
+    <path d="M15.545 6.558a9.4 9.4 0 0 1 .139 1.626c0 2.434-.87 4.492-2.384 5.885h.002C11.978 15.292 10.158 16 8 16A8 8 0 1 1 8 0a7.7 7.7 0 0 1 5.352 2.082l-2.284 2.284A4.35 4.35 0 0 0 8 3.166c-2.087 0-3.86 1.408-4.492 3.304a4.8 4.8 0 0 0 0 3.063h.003c.635 1.893 2.405 3.301 4.492 3.301 1.078 0 2.004-.276 2.722-.764h-.003a3.7 3.7 0 0 0 1.599-2.431H8v-3.08z" />
   </svg>
 );
 const AppleIcon = () => (
-  <svg width="24" height="24" viewBox="0 0 24 24">
-    <path
-      fill="currentColor"
-      d="M16.365 1.43c0 1.14-.93 2.07-2.07 2.07c-.04 0-.08 0-.12-.01c-.17-1.09.95-2.08 2.07-2.06c.08.13.13.28.12.44m2.06 4.36c-1.14-.07-2.1.65-2.65.65c-.56 0-1.42-.63-2.34-.61c-1.2.02-2.31.7-2.93 1.78c-1.25 2.16-.32 5.36.89 7.12c.59.86 1.29 1.82 2.21 1.79c.87-.04 1.2-.57 2.25-.57c1.05 0 1.34.57 2.26.55c.93-.02 1.51-.88 2.08-1.74c.66-.97.93-1.91.94-1.96c-.02-.01-1.8-.69-1.82-2.74c-.02-1.71 1.4-2.53 1.46-2.57c-.8-1.17-2.04-1.3-2.48-1.32m-2.1-4.36c.02.02.04.04.05.07c-.01-.03-.03-.05-.05-.07M12.01 5.5c.01 0 .01 0 0 0c.01 0 .01 0 0 0m7.98 13.24c-.19-.39-.38-.77-.59-1.14c-.53-.91-1.08-1.81-1.97-1.83c-.86-.02-1.13.56-2.25.56c-1.12 0-1.36-.58-2.25-.56c-.89.02-1.47.92-2 1.83c-.21.37-.41.75-.6 1.14c-.38.77-.67 1.5-.86 2.09c-.28.85-.2 1.23-.12 1.36c.09.14.36.19.81.19c.66-.01 1.28-.24 1.77-.45c.49-.21.94-.41 1.47-.41c.53 0 .97.2 1.47.41c.49.21 1.11.44 1.77.45c.45.01.72-.05.81-.19c.08-.13.16-.51-.12-1.36c-.19-.59-.48-1.32-.86-2.09z"
-    />
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    width="16"
+    height="16"
+    fill="currentColor"
+    className="bi bi-apple"
+    viewBox="0 0 16 16"
+  >
+    <path d="M11.182.008C11.148-.03 9.923.023 8.857 1.18c-1.066 1.156-.902 2.482-.878 2.516s1.52.087 2.475-1.258.762-2.391.728-2.43m3.314 11.733c-.048-.096-2.325-1.234-2.113-3.422s1.675-2.789 1.698-2.854-.597-.79-1.254-1.157a3.7 3.7 0 0 0-1.563-.434c-.108-.003-.483-.095-1.254.116-.508.139-1.653.589-1.968.607-.316.018-1.256-.522-2.267-.665-.647-.125-1.333.131-1.824.328-.49.196-1.422.754-2.074 2.237-.652 1.482-.311 3.83-.067 4.56s.625 1.924 1.273 2.796c.576.984 1.34 1.667 1.659 1.899s1.219.386 1.843.067c.502-.308 1.408-.485 1.766-.472.357.013 1.061.154 1.782.539.571.197 1.111.115 1.652-.105.541-.221 1.324-1.059 2.238-2.758q.52-1.185.473-1.282" />
+    <path d="M11.182.008C11.148-.03 9.923.023 8.857 1.18c-1.066 1.156-.902 2.482-.878 2.516s1.52.087 2.475-1.258.762-2.391.728-2.43m3.314 11.733c-.048-.096-2.325-1.234-2.113-3.422s1.675-2.789 1.698-2.854-.597-.79-1.254-1.157a3.7 3.7 0 0 0-1.563-.434c-.108-.003-.483-.095-1.254.116-.508.139-1.653.589-1.968.607-.316.018-1.256-.522-2.267-.665-.647-.125-1.333.131-1.824.328-.49.196-1.422.754-2.074 2.237-.652 1.482-.311 3.83-.067 4.56s.625 1.924 1.273 2.796c.576.984 1.34 1.667 1.659 1.899s1.219.386 1.843.067c.502-.308 1.408-.485 1.766-.472.357.013 1.061.154 1.782.539.571.197 1.111.115 1.652-.105.541-.221 1.324-1.059 2.238-2.758q.52-1.185.473-1.282" />
   </svg>
-);
-
-// UI Update: Replaced empty div with a CSS Abstract Art panel
-const Illustration = () => (
-  <div className="hidden md:flex relative flex-col items-center justify-center h-full w-full bg-gradient-to-br from-[#051F25] to-[#0b3c47] overflow-hidden">
-    {/* Abstract Background Elements */}
-    <div className="absolute top-0 left-0 w-full h-full opacity-30">
-      <div className="absolute top-[-20%] left-[-20%] w-[500px] h-[500px] rounded-full bg-[#155d6c] blur-[120px]"></div>
-      <div className="absolute bottom-[-10%] right-[-10%] w-[400px] h-[400px] rounded-full bg-[#0b3c47] blur-[100px] mix-blend-screen"></div>
-    </div>
-
-    {/* Content overlay */}
-    <div className="relative z-10 flex flex-col items-center text-center p-8">
-      <div className="mb-8 p-6 bg-white/5 rounded-full backdrop-blur-sm border border-white/10 shadow-2xl">
-        {/* Simple Lock/Shield Graphic */}
-        <svg
-          width="64"
-          height="64"
-          viewBox="0 0 24 24"
-          fill="none"
-          stroke="white"
-          strokeWidth="1.5"
-          strokeLinecap="round"
-          strokeLinejoin="round"
-          className="opacity-90"
-        >
-          <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
-          <path d="M9 12a3 3 0 1 0 6 0"></path>
-        </svg>
-      </div>
-      <h2 className="text-3xl font-bold text-white mb-2 tracking-wide">
-        Secure Portal
-      </h2>
-      <p className="text-gray-400 max-w-xs text-sm leading-relaxed">
-        Access your personalized dashboard with industry-standard security.
-      </p>
-    </div>
-  </div>
 );
 
 const Logo = () => (
@@ -161,7 +121,7 @@ const LoginPage = () => {
       if (!response.ok) {
         if (data.detail && Array.isArray(data.detail)) {
           const errorMessages = data.detail
-            .map((err: any) => err.msg)
+            .map((err: { msg: string }) => err.msg)
             .join(", ");
           throw new Error(errorMessages || "Login failed");
         }
@@ -233,25 +193,29 @@ const LoginPage = () => {
   };
 
   return (
-    // UI Update: Added deep gradient background
-    <div className="min-h-screen w-full flex items-center justify-center bg-gradient-to-br from-gray-900 via-gray-950 to-black p-4 md:p-6 font-sans">
+    // UI Update: Added deep gradient background with FloatingPaths
+    <div className="min-h-screen w-full flex items-center justify-center bg-black p-4 md:p-6 font-sans relative overflow-hidden">
+      <div className="absolute inset-0 opacity-40">
+        <FloatingPaths position={1} />
+        <FloatingPaths position={-1} />
+      </div>
       {/* UI Update: Enhanced card shadow and border */}
-      <div className="relative w-full max-w-[1000px] min-h-[600px] bg-gray-900/40 backdrop-blur-xl border border-white/10 rounded-[32px] shadow-2xl flex flex-col md:flex-row overflow-hidden ring-1 ring-white/5">
+      <div className="relative w-full max-w-[1000px] min-h-[700px] bg-gray-900/40 backdrop-blur-xl border border-white/10 rounded-[32px] shadow-2xl flex flex-col md:flex-row overflow-hidden ring-1 ring-white/5">
         {/* Left Side: Illustration Panel */}
-        <div className="w-full md:w-5/12 relative">
-          <Illustration />
+        <div className="w-full md:w-5/12 relative flex flex-col">
+          <InteractiveCharacterPolished />
         </div>
 
         {/* Right Side: Form */}
-        <div className="w-full md:w-7/12 flex flex-col justify-center px-8 py-10 md:px-16 md:py-12 relative">
+        <div className="w-full md:w-7/12 flex flex-col justify-center px-8 py-10 md:px-16 md:py-12 relative bg-white">
           <Logo />
 
           <div className="mb-8">
             {/* --- 3. Use the state variable here --- */}
-            <h1 className="text-3xl md:text-5xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-white to-gray-400 mb-3 tracking-tight">
+            <h1 className="text-3xl md:text-5xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-black  mb-3 tracking-tight">
               {greeting}
             </h1>
-            <p className="text-base md:text-lg text-gray-400">
+            <p className="text-base md:text-lg text-black">
               Please login to continue
             </p>
           </div>
@@ -272,7 +236,7 @@ const LoginPage = () => {
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 disabled={loading}
-                className="w-full bg-white/5 border border-white/10 text-gray-100 rounded-2xl py-4 px-6 text-base outline-none focus:border-[#0b3c47] focus:ring-4 focus:ring-[#0b3c47]/10 transition-all duration-200 placeholder-gray-500 disabled:opacity-50 hover:bg-white/[0.07]"
+                className="w-full bg-white/5 border border-black/10 text-black rounded-2xl py-4 px-6 text-base outline-none focus:border-[#0b3c47] focus:ring-4 focus:ring-[#0b3c47]/10 transition-all duration-200 placeholder-gray-500 disabled:opacity-50 hover:bg-white/[0.07]"
               />
               <input
                 type="password"
@@ -281,19 +245,19 @@ const LoginPage = () => {
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
                 disabled={loading}
-                className="w-full bg-white/5 border border-white/10 text-gray-100 rounded-2xl py-4 px-6 text-base outline-none focus:border-[#0b3c47] focus:ring-4 focus:ring-[#0b3c47]/10 transition-all duration-200 placeholder-gray-500 disabled:opacity-50 hover:bg-white/[0.07]"
+                className="w-full bg-white/5 border border-black/10 text-black rounded-2xl py-4 px-6 text-base outline-none focus:border-[#0b3c47] focus:ring-4 focus:ring-[#0b3c47]/10 transition-all duration-200 placeholder-gray-500 disabled:opacity-50 hover:bg-white/[0.07]"
               />
             </div>
 
             <button
               type="submit"
               disabled={loading}
-              className="w-full bg-gradient-to-r from-[#0b3c47] to-[#155d6c] text-white rounded-2xl py-4 font-semibold text-lg mt-4 hover:shadow-lg hover:shadow-[#0b3c47]/20 hover:scale-[1.01] active:scale-[0.98] transition-all duration-200 disabled:opacity-50 disabled:cursor-not-allowed disabled:transform-none"
+              className="w-full bg-black text-white rounded-2xl py-4 font-semibold text-lg mt-4 hover:shadow-lg hover:shadow-[#0b3c47]/20 hover:scale-[1.01] active:scale-[0.98] transition-all duration-200 disabled:opacity-50 disabled:cursor-not-allowed disabled:transform-none"
             >
               {loading ? (
                 <span className="flex items-center justify-center gap-2">
                   <svg
-                    className="animate-spin h-5 w-5 text-white"
+                    className="animate-spin h-5 w-5 text-black"
                     xmlns="http://www.w3.org/2000/svg"
                     fill="none"
                     viewBox="0 0 24 24"
@@ -329,23 +293,23 @@ const LoginPage = () => {
           </div>
 
           <div className="flex items-center gap-4 justify-center">
-            <button className="flex-1 flex items-center justify-center gap-3 bg-white/5 border border-white/5 rounded-xl py-3 hover:bg-white/10 transition-colors group">
+            <button className="flex-1 flex items-center justify-center gap-3 bg-white/5 border border-black rounded-xl py-3 hover:bg-white/10 transition-colors group">
               <div className="group-hover:scale-110 transition-transform duration-200">
                 <GoogleIcon />
               </div>
             </button>
-            <button className="flex-1 flex items-center justify-center gap-3 bg-white/5 border border-white/5 rounded-xl py-3 hover:bg-white/10 transition-colors group">
-              <div className="text-white group-hover:scale-110 transition-transform duration-200">
+            <button className="flex-1 flex items-center justify-center gap-3 bg-white/5 border border-black rounded-xl py-3 hover:bg-white/10 transition-colors group">
+              <div className="text-black group-hover:scale-110 transition-transform duration-200">
                 <AppleIcon />
               </div>
             </button>
           </div>
 
-          <div className="mt-8 text-center text-gray-400 text-sm md:text-base">
+          <div className="mt-8 text-center text-black text-sm md:text-base">
             Don't have an account?{" "}
             <Link
               to="/signup"
-              className="text-white font-medium hover:text-[#2a9db3] transition-colors relative after:content-[''] after:absolute after:w-full after:h-px after:bg-[#2a9db3] after:bottom-0 after:left-0 after:scale-x-0 hover:after:scale-x-100 after:transition-transform"
+              className="text-black/80 font-medium hover:text-[#2a9db3] transition-colors relative after:content-[''] after:absolute after:w-full after:h-px after:bg-[#2a9db3] after:bottom-0 after:left-0 after:scale-x-0 hover:after:scale-x-100 after:transition-transform"
             >
               Register here
             </Link>

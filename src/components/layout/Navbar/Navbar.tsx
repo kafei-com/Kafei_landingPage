@@ -17,25 +17,25 @@ const Navbar = () => {
           </a>
 
           <a
-            href="#product"
+            href="/product"
             className="text-sm font-medium hover:text-gray-300"
           >
             Product
           </a>
           <a
-            href="#features"
+            href="/features"
             className="text-sm font-medium hover:text-gray-300"
           >
             Features
           </a>
           <a
-            href="#pricing"
+            href="/pricing"
             className="text-sm font-medium hover:text-gray-300"
           >
             Pricing
           </a>
-          <a href="#about" className="text-sm font-medium hover:text-gray-300">
-            About
+          <a href="/about" className="text-sm font-medium hover:text-gray-300">
+            About Us
           </a>
         </div>
 
@@ -52,16 +52,16 @@ const Navbar = () => {
           {/* Desktop Buttons */}
           <div className="hidden md:flex bg-white/10 backdrop-blur-md border border-white/10 text-white rounded-full px-10 py-2 items-center gap-4">
             <button
-              onClick={() => navigate("/wishlist")}
+              onClick={() => navigate("/login")}
               className="text-sm font-medium hover:text-gray-300"
             >
               Login
             </button>
 
-            {/*  Desktop Get Demo (REDIRECT TO WISHLIST) */}
+            {/* Desktop Get Demo */}
             <StarBorder
               as="button"
-              onClick={() => navigate("/wishlist")}
+              onClick={() => navigate("/login")}
               color="white"
               speed="4s"
               thickness={1}
@@ -85,28 +85,28 @@ const Navbar = () => {
       {isOpen && (
         <div className="md:hidden absolute top-full left-0 w-full bg-black/80 backdrop-blur-md border-t border-white/10 text-white flex flex-col items-center gap-6 py-6">
           <a
-            href="#product"
+            href="/product"
             onClick={() => setIsOpen(false)}
             className="text-base hover:text-gray-300"
           >
             Product
           </a>
           <a
-            href="#features"
+            href="/features"
             onClick={() => setIsOpen(false)}
             className="text-base hover:text-gray-300"
           >
             Features
           </a>
           <a
-            href="#pricing"
+            href="/pricing"
             onClick={() => setIsOpen(false)}
             className="text-base hover:text-gray-300"
           >
             Pricing
           </a>
           <a
-            href="#about"
+            href="/about"
             onClick={() => setIsOpen(false)}
             className="text-base hover:text-gray-300"
           >
@@ -115,18 +115,18 @@ const Navbar = () => {
           <button
             onClick={() => {
               setIsOpen(false);
-              navigate("/wishlist");
+              navigate("/login");
             }}
             className="text-base hover:text-gray-300"
           >
             Login
           </button>
 
-          {/* Mobile Get Demo (REDIRECT TO WISHLIST) */}
+          {/* Mobile Get Demo */}
           <button
             onClick={() => {
               setIsOpen(false);
-              navigate("/wishlist");
+              navigate("/login");
             }}
             className="text-base bg-white/10 px-6 py-2 rounded-full"
           >

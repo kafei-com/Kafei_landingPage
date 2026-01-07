@@ -8,42 +8,42 @@ import {
     MonitorCog,
     Layers,
     Handshake,
-    Users,
+     FileDown,
 } from "lucide-react";
 
 const features = [
     {
         icon: Shredder,
-        title: "Flow Design",
-        description: "fwscscbluffwbdjblckjewbjbewbfefobejcldlfefepwidnskcnlfowfhpowi",
+        title: "System design",
+        description: "Professional, high-level system design tailored to your project ready to use",
 
     },
     {
         icon: Workflow,
-        title: "Workflow Automation",
-        description: "fwscscbluffwbdjblckjewbjbewbfefobejcldlfefepwidnskcnlfowfhpowi",
+        title: "Component Tree",
+        description: "A clean, scalable component & folder structure with proper responsibility mapping",
 
     },
     {
         icon: MonitorCog,
-        title: "Editing freedom",
-        description: "fwscscbluffwbdjblckjewbjbewbfefobejcldlfefepwidnskcnlfowfhpowi",
+        title: "ER Diagram",
+        description: " A complete entity-relationship diagram that explains your database visually",
 
     },
     {
         icon: Layers,
-        title: "Layered design system",
-        description: "fwscscbluffwbdjblckjewbjbewbfefobejcldlfefepwidnskcnlfowfhpowi",
+        title: "Generated Codes",
+        description: " Opinionated, production-ready boilerplate code and ready to deploy",
     },
     {
         icon: Handshake,
-        title: "Collaboration",
-        description: "fwscscbluffwbdjblckjewbjbewbfefobejcldlfefepwidnskcnlfowfhpowi",
+        title: "Deployment Guide",
+        description: "Where should I deploy? How do I go live? What breaks in production? All explained step-by-step",
     },
     {
-        icon: Users,
-        title: "Community Support",
-        description: "fwscscbluffwbdjblckjewbjbewbfefobejcldlfefepwidnskcnlfowfhpowi",
+        icon:  FileDown,
+        title: "ZIP Download",
+        description: "Download the entire project — code, diagrams and guides — ready to run and deploy",
     },
 ];
 
